@@ -16,7 +16,7 @@ You can upload CSV files containing product details, automatically validate them
 It also offers filtering and searching APIs for flexible retrieval — perfect for e-commerce, inventory tools, or internal dashboards.
 
 ---
-
+![High-Level Architecture](./assets/architecture.svg)
 ## 🎯 Features
 
 - 📤 CSV file upload & validation
