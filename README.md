@@ -147,7 +147,9 @@ TSHIRT001,Classic Tee,StreamThreads,Red,M,799,499,10
 ```
 GET /products
 ```
-
+```bash
+curl -X GET "http://localhost:8000/products"
+```
 Query params: `page`, `limit`
 
 ---
@@ -161,6 +163,11 @@ GET /products/search
 Params: `brand`, `color`, `minPrice`, `maxPrice`
 
 ---
+```bash
+curl -X GET "http://localhost:8000/products/search?brand=BloomWear&maxPrice=2500"
+curl -X GET "http://localhost:8000/products/search?brand=BloomWear&color=Pink"
+curl -X GET "http://localhost:8000/products/search?brand=BloomWear"
+```
 
 ## 🧠 Validation Rules
 
