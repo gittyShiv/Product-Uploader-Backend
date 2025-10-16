@@ -53,7 +53,7 @@ It also offers filtering and searching APIs for flexible retrieval — perfect f
 ## 📥 Installation
 
 ```bash
-git clone https://github.com/your-username/product-uploader-backend.git
+git clone https://github.com/gittyShiv/Product-Uploader-Backend.git
 cd product-uploader-backend
 ```
 
