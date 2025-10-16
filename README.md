@@ -229,18 +229,6 @@ docker save -o product-backend.tar product-backend
 
 ---
 
-## 🤝 Contributing
-
-```bash
-git checkout -b feature/AmazingFeature
-git commit -m "Add AmazingFeature"
-git push origin feature/AmazingFeature
-```
-
-Open a PR 🚀
-
----
-
 ## 📄 License
 
 For educational purpose
@@ -251,4 +239,4 @@ For educational purpose
 
 **Shivam Maurya**  
 📧 shivamvision.email@example.com  
-🔗 [GitHub Repo](https://github.com/your-username/product-uploader-backend)
+🔗 [GitHub Repo](https://github.com/gittyShiv/Product-Uploader-Backend)
