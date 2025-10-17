@@ -1,4 +1,11 @@
-sku,name,brand,color,size,mrp,price,quantity 
-TSHIRT-RED-001,Classic Cotton T-Shirt,StreamThreads,Red,M,799,499,20 
-TSHIRT-BLK-002,Classic Cotton T-Shirt,StreamThreads,Black,L,799,549,12 
-POLO-GRN-003,Heritage Polo,StreamThreads,Green,XL,1299,999,8
+sku,name,brand,color,size,mrp,price,quantity
+HOODIE-GRY-004,Essential Fleece Hoodie,StreamThreads,Grey,L,1899,1399,10
+HOODIE-NVY-005,Essential Fleece Hoodie,StreamThreads,Navy Blue,M,1899,1299,7
+JOGGER-BLK-006,Urban Fit Joggers,StreamThreads,Black,XL,1599,1099,15
+JOGGER-OLV-007,Urban Fit Joggers,StreamThreads,Olive Green,L,1599,1149,9
+SHIRT-BLU-008,Classic Denim Shirt,StreamThreads,Blue,L,1799,1299,11
+SHIRT-WHT-009,Classic Denim Shirt,StreamThreads,White,M,1799,1249,14
+TSHIRT-YLW-010,Vintage Graphic Tee,StreamThreads,Yellow,M,999,699,18
+TSHIRT-GRY-011,Vintage Graphic Tee,StreamThreads,Grey,S,999,749,16
+SHORTS-BLU-012,SportFlex Shorts,StreamThreads,Navy Blue,L,1199,899,20
+CAP-BLK-013,Everyday Baseball Cap,StreamThreads,Black,Free Size,699,499,25
