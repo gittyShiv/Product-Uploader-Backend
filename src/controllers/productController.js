@@ -2,7 +2,7 @@ import { processCSV } from "../utils/csvHandler.js";
 import Product from "../models/Product.js";
 import { Op } from "sequelize";
 
-// CSV upload handling 
+//CSV upload handling 
 export const uploadCSV = async (req, res) => {
   try {
     if (!req.file) return res.status(400).json({ error: "No file uploaded" });
@@ -13,7 +13,7 @@ export const uploadCSV = async (req, res) => {
   }
 };
 
-// Getting all the products
+//Getting all the products
 export const getProducts = async (req, res) => {
   const { page, limit } = req.query;
   let products;

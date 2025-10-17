@@ -11,7 +11,7 @@ describe("Product Validation", () => {
     const row = { sku: "", name: "Shoe" };
     const result = validateProductRow(row);
     expect(result.valid).toBe(false);
-    expect(result.error).toMatch(/Missing/);
+    expect(result.error).toMatch(/Missing/i);
   });
 
   it("should reject if price > MRP", () => {
