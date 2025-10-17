@@ -324,6 +324,10 @@ You can also remove table using
 ```SQL
 TRUNCATE TABLE "Products";
 ```
+To exit 
+```SQL
+\q
+```
 ---
 
 ## 🧩 Docker Image Management
