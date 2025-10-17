@@ -23,7 +23,7 @@ It also offers filtering and searching APIs for flexible retrieval — perfect f
 - 🧮 Real-time error reporting for invalid rows
 - 🔍 Filtering & search endpoints
 - 🐘 PostgreSQL integration with Sequelize ORM
-- 🧪 Full test coverage using Jest
+- 🧪 Unit tests coverage using Jest
 - 🐳 One-command Docker setup
 
 ---
