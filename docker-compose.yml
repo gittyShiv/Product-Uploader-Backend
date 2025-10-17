@@ -1,4 +1,3 @@
-
 services:
   postgres:
     image: postgres:15
@@ -35,6 +34,22 @@ services:
       - .:/app
       - /app/node_modules
     command: npm run dev
+
+  backend-test:
+    build: .
+    container_name: product-backend-test
+    environment:
+      PORT: 8000
+      POSTGRES_URI: postgres://postgres:root@postgres:5432/productdb
+      NODE_ENV: development
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm test
+    restart: "no"
 
 volumes:
   pgdata:

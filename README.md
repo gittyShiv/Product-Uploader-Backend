@@ -71,7 +71,8 @@ This will:
 
 ✅ Verify:
 ```bash
-docker ps
+ Unit Tests will be passed(shown)
+ .... 
 ```
 
 ---
@@ -113,6 +114,8 @@ POST /upload
 Headers: `multipart/form-data`  
 Field: `file`
 
+For local testing you can upload your csv file or paste in products.csv
+then
 ```bash
 curl -X POST -F "file=@products.csv" http://localhost:8000/upload
 ```
@@ -121,6 +124,7 @@ Sample CSV:
 ```csv
 sku,name,brand,color,size,mrp,price,quantity
 TSHIRT001,Classic Tee,StreamThreads,Red,M,799,499,10
+DRESS-YLW-M,Floral Summer Dress,BloomWear,Yellow,M,2499,1999,7
 ```
 
 ✅ Success:
@@ -131,6 +135,11 @@ TSHIRT001,Classic Tee,StreamThreads,Red,M,799,499,10
 }
 ```
 
+Sample CSV:
+```csv
+JEANS-BLK-030,,DenimWorks,Black,30,1999,1499,18 
+DRESS-PNK-S,Floral Summer Dress,BloomWear,Pink,S,2499,2199,10 
+```
 ⚠️ Failure:
 ```json
 {
@@ -138,7 +147,18 @@ TSHIRT001,Classic Tee,StreamThreads,Red,M,799,499,10
   "failed": [{ "row": {"sku": ""}, "error": "Missing required fields" }]
 }
 ```
-
+Sample CSV:
+```csv
+SHOE-NVY-8,Everyday Sneakers,StrideLab,Navy,UK8,2999,3000,19 
+BAG-TOTE-BEI,Canvas Tote Bag,CarryCo,Beige,OneSize,899,699,-35
+```
+⚠️ Failure:
+```json
+{
+  "stored": 1,
+  "failed": [{ "row": {"sku": ""}, "error": "Missing required fields" }]
+}
+```
 ---
 
 ### 📦 Get All Products
@@ -149,8 +169,6 @@ GET /products
 ```bash
 curl -X GET "http://localhost:8000/products"
 ```
-Query params: `page`, `limit`
-
 ---
 
 ### 🔍 Search / Filter Products
@@ -179,7 +197,7 @@ curl -X GET "http://localhost:8000/products/search?brand=BloomWear"
 
 ---
 
-## 🧪 Testing
+## 🧪 Testing(if not using docker(chosen alternate method))
 
 ```bash
 npm test
@@ -202,8 +220,6 @@ PASS tests/filters.test.js
 ```bash
 docker exec -it productdb psql -U postgres -d productdb
 ```
-
-or use GUI clients like DBeaver / TablePlus.
 
 ---
 
