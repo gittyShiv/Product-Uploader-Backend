@@ -54,7 +54,6 @@ It also offers filtering and searching APIs for flexible retrieval — perfect f
 
 ```bash
 git clone https://github.com/gittyShiv/Product-Uploader-Backend.git
-cd product-uploader-backend
 ```
 
 ---
