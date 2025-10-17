@@ -72,7 +72,10 @@ This will:
 ✅ Verify:
 ```bash
  Unit Tests will be passed(shown)
- .... 
+ Test Suites: 3 passed, 3 total
+product-backend-test |Tests:8 passed, 8 total                  
+product-backend-test | Snapshots: 0 total                                                product-backend-test | Time:        1.622 s
+product-backend-test | Ran all test suites. 
 ```
 
 ---
@@ -137,6 +140,7 @@ DRESS-YLW-M,Floral Summer Dress,BloomWear,Yellow,M,2499,1999,7
 
 Sample CSV:
 ```csv
+sku,name,brand,color,size,mrp,price,quantity
 JEANS-BLK-030,,DenimWorks,Black,30,1999,1499,18 
 DRESS-PNK-S,Floral Summer Dress,BloomWear,Pink,S,2499,2199,10 
 ```
@@ -144,19 +148,61 @@ DRESS-PNK-S,Floral Summer Dress,BloomWear,Pink,S,2499,2199,10
 ```json
 {
   "stored": 1,
-  "failed": [{ "row": {"sku": ""}, "error": "Missing required fields" }]
+  "failed": [
+    {
+      "row": {
+        "sku": "JEANS-BLK-030",
+        "name": "",
+        "brand": "DenimWorks",
+        "color": "Black",
+        "size": "30",
+        "mrp": "1999",
+        "price": "1499",
+        "quantity": "18 "
+      },
+      "error": "Required fields is missing"
+    }
+  ]
 }
 ```
-Sample CSV:
+Sample CSV(more differnt example):
 ```csv
+sku,name,brand,color,size,mrp,price,quantity
 SHOE-NVY-8,Everyday Sneakers,StrideLab,Navy,UK8,2999,3000,19 
 BAG-TOTE-BEI,Canvas Tote Bag,CarryCo,Beige,OneSize,899,699,-35
 ```
 ⚠️ Failure:
 ```json
 {
-  "stored": 1,
-  "failed": [{ "row": {"sku": ""}, "error": "Missing required fields" }]
+  "stored": 0,
+  "failed": [
+    {
+      "row": {
+        "sku": "SHOE-NVY-8",
+        "name": "Everyday Sneakers",
+        "brand": "StrideLab",
+        "color": "Navy",
+        "size": "UK8",
+        "mrp": "2999",
+        "price": "3000",
+        "quantity": "19 "
+      },
+      "error": "Price cannot be greater than MRP"
+    },
+    {
+      "row": {
+        "sku": "BAG-TOTE-BEI",
+        "name": "Canvas Tote Bag",
+        "brand": "CarryCo",
+        "color": "Beige",
+        "size": "OneSize",
+        "mrp": "899",
+        "price": "699",
+        "quantity": "-35"
+      },
+      "error": "Quantity cannot be negative"
+    }
+  ]
 }
 ```
 ---
@@ -169,6 +215,52 @@ GET /products
 ```bash
 curl -X GET "http://localhost:8000/products"
 ```
+(Till this point all uploaded products will be result)
+Result:
+```json
+[
+  {
+    "id": 174,
+    "sku": "TSHIRT001",
+    "name": "Classic Tee",
+    "brand": "StreamThreads",
+    "color": "Red",
+    "size": "M",
+    "mrp": 799,
+    "price": 499,
+    "quantity": 10,
+    "createdAt": "2025-10-17T09:59:15.121Z",
+    "updatedAt": "2025-10-17T09:59:15.121Z"
+  },
+  {
+    "id": 175,
+    "sku": "DRESS-YLW-M",
+    "name": "Floral Summer Dress",
+    "brand": "BloomWear",
+    "color": "Yellow",
+    "size": "M",
+    "mrp": 2499,
+    "price": 1999,
+    "quantity": 7,
+    "createdAt": "2025-10-17T09:59:15.121Z",
+    "updatedAt": "2025-10-17T09:59:15.121Z"
+  },
+  {
+    "id": 176,
+    "sku": "DRESS-PNK-S",
+    "name": "Floral Summer Dress",
+    "brand": "BloomWear",
+    "color": "Pink",
+    "size": "S",
+    "mrp": 2499,
+    "price": 2199,
+    "quantity": 10,
+    "createdAt": "2025-10-17T10:00:46.682Z",
+    "updatedAt": "2025-10-17T10:00:46.682Z"
+  }
+]
+```
+---
 ---
 
 ### 🔍 Search / Filter Products
@@ -220,7 +312,18 @@ PASS tests/filters.test.js
 ```bash
 docker exec -it productdb psql -U postgres -d productdb
 ```
-
+You should now see a prompt like:
+```Code
+productdb=#
+```
+You can see all stored products by
+```SQL
+SELECT * FROM "Products";
+```
+You can also remove table using 
+```SQL
+TRUNCATE TABLE "Products";
+```
 ---
 
 ## 🧩 Docker Image Management
