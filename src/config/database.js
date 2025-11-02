@@ -6,7 +6,7 @@ import OrderbookSnapshotModel from '../models/OrderbookSnapshot.js';
 
 dotenv.config();
 
-const sequelize = new Sequelize(process.env.POSTGRES_URI || 'postgres://postgres:root@localhost:5432/trading', {
+const sequelize = new Sequelize(process.env.POSTGRES_URI, {
   dialect: 'postgres',
   logging: process.env.NODE_ENV !== 'production' ? console.log : false,
   pool: {
@@ -16,6 +16,11 @@ const sequelize = new Sequelize(process.env.POSTGRES_URI || 'postgres://postgres
     idle: 10000,
   },
 });
+
+if (!process.env.POSTGRES_URI) {
+  console.error('❌ POSTGRES_URI environment variable is required');
+  throw new Error('Database configuration missing: POSTGRES_URI must be set');
+}
 
 // Initialize models
 const Order = OrderModel(sequelize);

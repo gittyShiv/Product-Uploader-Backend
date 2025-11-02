@@ -45,7 +45,7 @@ const orderLatencyHistogram = new client.Histogram({
 
 const orderbookDepthGauge = new client.Gauge({
   name: 'current_orderbook_depth',
-  help: 'Current orderbook depth (total quantity on both sides)',
+  help: 'Current orderbook depth (quantity on bid or ask side)',
   labelNames: ['instrument', 'side'],
   registers: [register],
 });
