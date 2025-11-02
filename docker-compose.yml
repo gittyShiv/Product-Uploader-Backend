@@ -1,12 +1,12 @@
 services:
   postgres:
     image: postgres:15
-    container_name: productdb
+    container_name: trading-db
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: productdb
+      POSTGRES_DB: trading
     ports:
       - "5432:5432"
     volumes:
@@ -17,16 +17,33 @@ services:
       timeout: 5s
       retries: 5
 
+  redis:
+    image: redis:7-alpine
+    container_name: trading-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   backend:
     build: .
-    container_name: product-backend
+    container_name: trading-backend
     restart: always
     environment:
       PORT: 8000
-      POSTGRES_URI: postgres://postgres:root@postgres:5432/productdb
+      POSTGRES_URI: postgres://postgres:root@postgres:5432/trading
+      REDIS_URL: redis://redis:6379
       NODE_ENV: development
     depends_on:
       postgres:
+        condition: service_healthy
+      redis:
         condition: service_healthy
     ports:
       - "8000:8000"
@@ -37,13 +54,16 @@ services:
 
   backend-test:
     build: .
-    container_name: product-backend-test
+    container_name: trading-backend-test
     environment:
       PORT: 8000
-      POSTGRES_URI: postgres://postgres:root@postgres:5432/productdb
-      NODE_ENV: development
+      POSTGRES_URI: postgres://postgres:root@postgres:5432/trading
+      REDIS_URL: redis://redis:6379
+      NODE_ENV: test
     depends_on:
       postgres:
+        condition: service_healthy
+      redis:
         condition: service_healthy
     volumes:
       - .:/app
@@ -53,4 +73,5 @@ services:
 
 volumes:
   pgdata:
+  redisdata:
 
